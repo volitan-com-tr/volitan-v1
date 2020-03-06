@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Product = require("../models/product");
+const baseUrl = require('../config/config').baseUrl;
 
 exports.products_get_all = (req, res, next) => {
   Product.find()
@@ -16,7 +17,7 @@ exports.products_get_all = (req, res, next) => {
             _id: doc._id,
             request: {
               type: "GET",
-              url: "http://localhost:3000/products/" + doc._id
+              url: baseUrl+'products/' + doc._id
             }
           };
         })
@@ -56,7 +57,7 @@ exports.products_create_product = (req, res, next) => {
           _id: result._id,
           request: {
             type: "GET",
-            url: "http://localhost:3000/products/" + result._id
+            url: baseUrl+"products/" + result._id
           }
         }
       });
@@ -81,7 +82,7 @@ exports.products_get_product = (req, res, next) => {
           product: doc,
           request: {
             type: "GET",
-            url: "http://localhost:3000/products"
+            url: baseUrl+"products"
           }
         });
       } else {
@@ -109,7 +110,7 @@ exports.products_update_product = (req, res, next) => {
         message: "Ürün Güncellendi.",
         request: {
           type: "GET",
-          url: "http://localhost:3000/products/" + id
+          url: baseUrl+"products/" + id
         }
       });
     })
@@ -130,7 +131,7 @@ exports.products_delete = (req, res, next) => {
         message: "Ürün Silindi.",
         request: {
           type: "POST",
-          url: "http://localhost:3000/products",
+          url: baseUrl+"products",
           body: { name: "String", price: "Number" }
         }
       });

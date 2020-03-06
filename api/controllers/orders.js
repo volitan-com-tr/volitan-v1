@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const baseUrl = require('../config/config').baseUrl;
 
 const Order = require("../models/order");
 const Product = require("../models/product");
@@ -18,7 +19,7 @@ exports.orders_get_all = (req, res, next) => {
             quantity: doc.quantity,
             request: {
               type: "GET",
-              url: "http://localhost:3000/orders/" + doc._id
+              url: baseUrl+"orders/" + doc._id
             }
           };
         })
@@ -57,7 +58,7 @@ exports.orders_create_order = (req, res, next) => {
         },
         request: {
           type: "GET",
-          url: "http://localhost:3000/orders/" + result._id
+          url: baseUrl+"orders/" + result._id
         }
       });
     })
@@ -83,7 +84,7 @@ exports.orders_get_order = (req, res, next) => {
         order: order,
         request: {
           type: "GET",
-          url: "http://localhost:3000/orders"
+          url: baseUrl+"orders"
         }
       });
     })
@@ -102,7 +103,7 @@ exports.orders_delete_order = (req, res, next) => {
         message: "Sipariş Silindi.",
         request: {
           type: "POST",
-          url: "http://localhost:3000/orders",
+          url: baseUrl+"orders",
           body: { productId: "ID", quantity: "Number" }
         }
       });

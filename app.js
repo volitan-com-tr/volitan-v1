@@ -13,7 +13,8 @@ const userRoutes = require('./api/routes/user');
 mongoose.Promise = global.Promise;
 mongoose.connect(dbconfig.db,{
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    autoIndex: false
 }).then( ()=>{
     console.log('Database bağlandı...')
 },
